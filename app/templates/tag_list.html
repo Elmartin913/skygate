@@ -21,7 +21,7 @@
             <tr>
                 <td><a href="/tag-list/{{ obj.id }}">{{ obj.tag_name }}</a></td>
                 <td><a href="/tag/{{ obj.id }}/edit">Edit</a></td>
-                <td><a href="#">Delete</a></td>
+                <td><a href="/tag/{{ obj.id }}/delete">Delete</a></td>
             </tr>
         {% endfor %}
 

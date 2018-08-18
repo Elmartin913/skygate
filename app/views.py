@@ -38,7 +38,7 @@ class BookCreateFormView(View):
 
 class BookDeleteView(DeleteView):
     model = Book
-    template_name = 'book_confirm_delete.html'
+    template_name = 'confirm_delete.html'
     success_url = reverse_lazy('book-list')
 
 # authors
@@ -55,6 +55,12 @@ class AuthorUpdateView(UpdateView):
     fields = '__all__'
     success_url = reverse_lazy('author-list')
 
+
+class AuthorDeleteView(DeleteView):
+    model = Author
+    template_name = 'author_confirm_delete.html'
+    success_url = reverse_lazy('author-list')
+
 # tags
 
 
@@ -67,4 +73,10 @@ class TagUpdateView(UpdateView):
     model = Tag
     template_name = 'form.html'
     fields = '__all__'
+    success_url = reverse_lazy('tag-list')
+
+
+class TagDeleteView(DeleteView):
+    model = Tag
+    template_name = 'confirm_delete.html'
     success_url = reverse_lazy('tag-list')

@@ -3,7 +3,7 @@
 {% block content %}
 <section>
     <div class="container">
-  <h2>Authorss</h2>
+  <h2>Authors</h2>
 
   <table class="table table-bordered">
 
@@ -21,7 +21,7 @@
             <tr>
                 <td><a href="/author-list/{{ obj.id }}">{{ obj.name }}</a></td>
                 <td><a href="/author/{{ obj.id }}/edit">Edit</a></td>
-                <td><a href="#">Delete</a></td>
+                <td><a href="/author/{{ obj.id }}/delete">Delete</a></td>
             </tr>
         {% endfor %}
 
