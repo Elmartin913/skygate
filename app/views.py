@@ -61,6 +61,13 @@ class AuthorDeleteView(DeleteView):
     template_name = 'author_confirm_delete.html'
     success_url = reverse_lazy('author-list')
 
+
+class AuthorCreateView(CreateView):
+    model = Author
+    template_name = 'author_form.html'
+    fields = '__all__'
+    success_url = reverse_lazy('author-list')
+
 # tags
 
 
@@ -79,4 +86,11 @@ class TagUpdateView(UpdateView):
 class TagDeleteView(DeleteView):
     model = Tag
     template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('tag-list')
+
+
+class TagCreateView(CreateView):
+    model = Tag
+    template_name = 'tag_form.html'
+    fields = '__all__'
     success_url = reverse_lazy('tag-list')
