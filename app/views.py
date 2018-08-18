@@ -31,14 +31,16 @@ class BookUpdateView(UpdateView):
     success_url = reverse_lazy('book-list')
 
 
-class BookCreateFormView(View):
-    def get(self, request):
-        return render(request, 'form.html')
-
-
 class BookDeleteView(DeleteView):
     model = Book
     template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('book-list')
+
+
+class BookCreateView(CreateView):
+    model = Book
+    template_name = 'book_form.html'
+    fields = '__all__'
     success_url = reverse_lazy('book-list')
 
 # authors
