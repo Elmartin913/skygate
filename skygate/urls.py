@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from app.views import PanelView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # panel vielw
+    path('panel/', PanelView.as_view(), name='panel'),
 ]
