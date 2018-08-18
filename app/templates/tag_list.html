@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+    <div class="container">
+  <h2>Tags</h2>
+
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+        <th>Tag</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+        {% for obj in object_list %}
+            <tr>
+                <td><a href="/tag-list/{{ obj.id }}">{{ obj.tag_name }}</a></td>
+                <td><a href="#">Edit</a></td>
+                <td><a href="#">Delete</a></td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+</section>
+{% endblock %}

@@ -13,29 +13,28 @@ GENRES = (
 
 class Book(models.Model):
     title = models.CharField(max_length=256)
-    gender = models.IntegerField(choices=GENRES)
+    gender = models.IntegerField(choices=GENRES, blank=True)
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateField(auto_now_add=True)
-    tags = models.ManyToManyField('Tag', related_name='books')
+    tags = models.ManyToManyField('Tag', related_name='books', blank=True)
 
     def __str__(self):
         return self.title
 
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=256)
-    last_name = models.CharField(max_length=256)
+    first_name = models.CharField(max_length=256, blank=True)
+    last_name = models.CharField(max_length=256, blank=True)
 
     def name(self):
         return "{} {}".format(self.first_name, self.last_name)
 
-    def __str__(self):
+    def __rep__(self):
         return self.name
 
 
 class Tag(models.Model):
-    tag_name = models.CharField(null=True, max_length=256)
+    tag_name = models.CharField(null=True, max_length=256, blank=True)
     # books
 
     def __str__(self):

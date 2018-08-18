@@ -12,7 +12,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'gender', 'author', 'owner', 'date_added', 'tags_list']
+    list_display = ['title', 'gender', 'author', 'date_added', 'tags_list']
 
     def tags_list(self, obj):
         return ', '.join([str(t) for t in obj.tags.all()])
