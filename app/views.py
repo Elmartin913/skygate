@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.http import request, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
+from django.contrib.auth import login
 
 
 from .models import Book, Author, Tag
 from .forms import BookCreatorStep1Form, BookCreatorStep2Form
+from .forms import SignUpForm
 
 
 # Create your views here.
@@ -127,3 +129,16 @@ class TagCreateView(CreateView):
     template_name = 'tag_form.html'
     fields = '__all__'
     success_url = reverse_lazy('tag-list')
+
+
+# account
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('panel')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
