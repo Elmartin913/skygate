@@ -7,7 +7,7 @@ from .models import Book, Author, Tag
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name']
+    list_display = ['author_name', ]
 
 
 @admin.register(Book)

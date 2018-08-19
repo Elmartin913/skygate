@@ -1,7 +1,7 @@
 from .models import Book, Author, Tag
 
 
-def lists(request):
+def storehouse(request):
     books = Book.objects.all()
     authors = Author.objects.all()
     tags = Tag.objects.all()
