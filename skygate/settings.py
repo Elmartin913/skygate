@@ -132,4 +132,5 @@ REST_FRAMEWORK = {
 }
 
 LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'panel'
 LOGIN_URL = 'login'
