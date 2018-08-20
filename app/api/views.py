@@ -3,6 +3,7 @@ from rest_framework import generics, mixins
 
 from app.models import Book
 from .serializers import BookSerializer
+from .permission import IsOwnerOrReadOnly
 
 
 class BookAPIView(mixins.CreateModelMixin, generics.ListAPIView):
@@ -26,6 +27,7 @@ class BookAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 class BookRudAPIView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
     serializer_class = BookSerializer
+    permission_classes = [IsOwnerOrReadOnly]
     #queryset = Book.objects.all()
 
     def get_queryset(self):

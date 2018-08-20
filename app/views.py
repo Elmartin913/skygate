@@ -66,6 +66,7 @@ class BookCreatorStep1View(View):
                 title=title,
                 gender=gender,
                 isbn=isbn,
+                user=request.user
             )
 
         url = reverse('book-creator2', kwargs={'book_id': new_book.id})
