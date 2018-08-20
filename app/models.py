@@ -26,7 +26,7 @@ class Book(models.Model):
 class Author(models.Model):
     author_name = models.CharField(max_length=256, blank=True)
 
-    def __repr__(self):
+    def __str__(self):
         return self.author_name
 
 

@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 
 from .models import Book, Author, Tag
@@ -15,7 +17,7 @@ from .forms import SignUpForm
 # Create your views here.
 
 # panel
-class PanelView(View):
+class PanelView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'panel.html')
 
