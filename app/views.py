@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import request, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.template.response import TemplateResponse
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -10,13 +12,18 @@ from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMix
 
 
 from .models import Book, Author, Tag
-from .forms import BookCreatorStep1Form, BookCreatorStep2Form
 from .forms import SignUpForm
 
 
 # Create your views here.
 
+class StartView(View):
+    def get(self, requset):
+        return TemplateResponse(requset, 'index.html')
+
 # panel
+
+
 class PanelView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'panel.html')
@@ -27,6 +34,11 @@ class PanelView(LoginRequiredMixin, View):
 class BookListView(ListView):
     model = Book
     template_name = 'book_list.html'
+
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'book_detail.html'
 
 
 class BookUpdateView(UpdateView):
@@ -48,36 +60,6 @@ class BookCreateView(CreateView):
     fields = '__all__'
     success_url = reverse_lazy('book-list')
 
-# book creator
-
-
-class BookCreatorStep1View(View):
-    def get(self, request):
-        form = BookCreatorStep1Form()
-        return render(request, 'form.html', {'form': form})
-
-    def post(self, request):
-        form = BookCreatorStep1Form(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            gender = form.cleaned_data['gender']
-            isbn = form.cleaned_data['isbn']
-            new_book = Book.objects.create(
-                title=title,
-                gender=gender,
-                isbn=isbn,
-                user=request.user
-            )
-
-        url = reverse('book-creator2', kwargs={'book_id': new_book.id})
-        return HttpResponseRedirect(url)
-
-
-class BookCreatorStep2View(View):
-    def get(self, request, book_id):
-        form = BookCreatorStep2Form()
-        return render(request, 'form.html', {'form': form})
-
 
 # authors
 
@@ -85,6 +67,11 @@ class BookCreatorStep2View(View):
 class AuthorListView(ListView):
     model = Author
     template_name = 'author_list.html'
+
+
+class AuthorDetailView(DetailView):
+    model = Author
+    template_name = 'author_detail.html'
 
 
 class AuthorUpdateView(UpdateView):

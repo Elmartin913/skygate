@@ -19,7 +19,7 @@
 
         {% for obj in object_list %}
             <tr>
-                <td><a href="/book_list/{{ obj.id }}">{{ obj.title }}</a></td>
+                <td><a href="/book/{{ obj.id }}">{{ obj.title }}</a></td>
                 <td><a href="/book/{{ obj.id }}/edit">Edit</a></td>
                 <td><a href="/book/{{ obj.id }}/delete">Delete</a></td>
             </tr>
@@ -28,7 +28,6 @@
     </tbody>
   </table>
   <p><a href="/book-create">New Book</a></p>
-  <p><a href="/book-creator1">New Book Creator</a></p>
 </div>
 </section>
 {% endblock %}

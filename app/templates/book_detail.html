@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="card">
+                <div class="card-body">
+
+                    <h2>{{ object.title }}</h2>
+                    <p>Gender: <b>{{ object.get_gender_display }}</b></h4>
+                    <p>ISBN number: <b>{{ object.isbn }}</b></h4>
+                    <p>Author: <b>{{ object.author.author_name }}</b></h4>
+                    <p>Add date: <b>{{ object.date_added }}</b></h4>
+                    <p>Owner: <b>{{ object.user }}</b></p>
+                    <p>Tags:
+
+                        {% for t in object.tags.all %}
+                            <p><b>{{ t.tag_name }}</b></p>
+                        {% endfor %}
+
+                    </h4>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

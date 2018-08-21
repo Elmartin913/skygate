@@ -22,12 +22,13 @@ from django.contrib.auth.views import (
 )
 
 from app.views import (
+    StartView,
     PanelView,
+    BookDetailView,
     BookCreateView,
-    BookCreatorStep1View,
-    BookCreatorStep2View,
     BookListView,
     AuthorListView,
+    AuthorDetailView,
     TagListView,
     BookUpdateView,
     AuthorUpdateView,
@@ -42,18 +43,18 @@ from app.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', StartView.as_view(), name='index'),
     # panel vielw
     path('panel/', PanelView.as_view(), name='panel'),
     # books
     path('book-list', BookListView.as_view(), name='book-list'),
+    path('book/<int:pk>/', BookDetailView.as_view(), name='book-detail'),
     path('book/<int:pk>/edit', BookUpdateView.as_view(), name='book-edit'),
     path('book/<int:pk>/delete', BookDeleteView.as_view(), name='book-delete'),
     path('book-create', BookCreateView.as_view(), name='book-create'),
-    # book creator
-    path('book-creator1', BookCreatorStep1View.as_view(), name='book-creator1'),
-    path('book-creator2/<int:book_id>', BookCreatorStep2View.as_view(), name='book-creator2'),
     # authors
     path('author-list', AuthorListView.as_view(), name='author-list'),
+    path('author/<int:pk>/', AuthorDetailView.as_view(), name='author-detail'),
     path('author/<int:pk>/edit', AuthorUpdateView.as_view(), name='author-edit'),
     path('author/<int:pk>/delete', AuthorDeleteView.as_view(), name='author-delete'),
     path('author-create', AuthorCreateView.as_view(), name='author-create'),

@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section>
-  <form method="post">{% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Save">
-  </form>
-</section>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
