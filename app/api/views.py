@@ -9,7 +9,6 @@ from .permission import IsOwnerOrReadOnly
 class BookAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'
     serializer_class = BookSerializer
-    #queryset = Book.objects.all()
 
     def get_queryset(self):
         qs = Book.objects.all()
@@ -21,7 +20,7 @@ class BookAPIView(mixins.CreateModelMixin, generics.ListAPIView):
         return qs
 
     def post(self, serializer):
-        return self.create(request, *arg, **kwargs)
+        return self.create(self.request)
 
 
 class BookRudAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -33,6 +32,6 @@ class BookRudAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Book.objects.all()
 
-    # def get_object(self)
-    #    pk = self.kwars.get('pk')
-    #    return Book.objects.get(pk=pk)
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return Book.objects.get(pk=pk)

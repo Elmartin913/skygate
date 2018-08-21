@@ -18,14 +18,14 @@ class Book(models.Model):
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
     date_added = models.DateField(auto_now_add=True)
     tags = models.ManyToManyField('Tag', related_name='books', blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
 
     @property
     def owner(self):
-        return self._user
+        return self.user
 
 
 class Author(models.Model):
